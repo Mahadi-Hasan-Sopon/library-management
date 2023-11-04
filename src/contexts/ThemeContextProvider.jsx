@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 export const ThemeContext = createContext("null");
+
 const ThemeContextProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
   const toggleTheme = () => {
