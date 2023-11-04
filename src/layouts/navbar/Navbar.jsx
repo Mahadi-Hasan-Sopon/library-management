@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
+    <>
       <li>
         <NavLink
           to="/"
@@ -53,7 +53,7 @@ const Navbar = () => {
           Login
         </NavLink>
       </li>
-    </div>
+    </>
   );
 };
 

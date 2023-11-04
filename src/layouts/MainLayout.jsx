@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "./navbar/Navbar";
+import { GiSpellBook } from "react-icons/gi";
 
 const MainLayout = () => {
   return (
@@ -29,22 +31,21 @@ const MainLayout = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Encyclopaedia</div>
+            <div className="flex-1 px-2 mx-2 font-bold text-xl">
+              <div className="flex gap-3 items-center">
+                <GiSpellBook className="text-4xl -mt-2" />
+                Encyclopaedia
+              </div>
+            </div>
             <div className="flex-none hidden lg:block">
-              <div className="menu menu-horizontal">
+              <div className="menu menu-horizontal font-semibold text-base">
                 {/* Navbar menu content here */}
-                <li>
-                  <a>Navbar Item 1</a>
-                </li>
-                <li>
-                  <a>Navbar Item 2</a>
-                </li>
+                <Navbar />
               </div>
             </div>
           </div>
           {/* Page content here */}
           <Outlet />
-          Content
         </div>
         <div className="drawer-side">
           <label
@@ -52,14 +53,9 @@ const MainLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="menu p-4 w-80 min-h-full bg-base-200">
+          <div className="menu p-4 w-80 min-h-full bg-base-200 text-lg font-semibold pt-6">
             {/* Sidebar content here */}
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
+            <Navbar />
           </div>
         </div>
       </div>

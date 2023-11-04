@@ -28,15 +28,15 @@ const routes = createBrowserRouter([
         path: "borrowedBooks",
         element: <BorrowedBooks />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 
