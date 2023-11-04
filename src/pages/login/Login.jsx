@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+
 const Login = () => {
   return (
     <div className="w-full">
@@ -8,13 +11,13 @@ const Login = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6">
                 <div>
                   <label
                     htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your email
+                    Email
                   </label>
                   <input
                     type="email"
@@ -69,20 +72,28 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-slate-600 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
+                  className="w-full text-white bg-slate-600 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
                 >
                   Sign in
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   {"Don’t"} have an account yet?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-slate-600 hover:underline dark:text-slate-500"
+                  <Link
+                    to="/register"
+                    className="font-medium text-slate-700 text-base hover:underline dark:text-slate-500"
                   >
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
+              <div className="optional flex justify-center items-center">
+                <hr className="w-full flex-1" />
+                <button className="flex items-center gap-2 border py-2 px-6 text-gray-900 dark:text-white rounded-lg">
+                  <FcGoogle className="text-2xl" />
+                  Login with Google
+                </button>
+                <hr className="w-full flex-1" />
+              </div>
             </div>
           </div>
         </div>
