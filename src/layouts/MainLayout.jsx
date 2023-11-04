@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import { GiSpellBook } from "react-icons/gi";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContextProvider";
 
 const MainLayout = () => {
+  const { toggleTheme, checked } = useContext(ThemeContext);
+
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -35,6 +39,14 @@ const MainLayout = () => {
               <div className="flex gap-3 items-center">
                 <GiSpellBook className="text-4xl -mt-2" />
                 Encyclopaedia
+              </div>
+              <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 md:left-auto rotate-90 z-20">
+                <input
+                  type="checkbox"
+                  className="toggle"
+                  onChange={toggleTheme}
+                  checked={checked}
+                />
               </div>
             </div>
             <div className="flex-none hidden lg:block">
