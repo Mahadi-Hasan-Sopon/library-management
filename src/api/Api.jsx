@@ -1,17 +1,25 @@
-import useAxiosSecure from "../hooks/useAxiosSecure";
-const Api = () => {
-  const axiosSecure = useAxiosSecure();
+import axios from "axios";
 
-  const getAllBook = async () => {
-    axiosSecure
-      .get("/allBook")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  return { getAllBook };
+const getAllBook = async () => {
+  try {
+    const result = await apiSecure.get("/allBook");
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export default Api;
+export { getAllBook };
+
+// const api = axios.create({
+//   baseURL: "http://localhost:5000",
+//   headers: { "Content-Type": "application/json" },
+// });
+
+const apiSecure = axios.create({
+  baseURL: "http://localhost:5000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
