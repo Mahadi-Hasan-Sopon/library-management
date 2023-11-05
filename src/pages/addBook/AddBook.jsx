@@ -52,7 +52,7 @@ const AddBook = () => {
               id="category"
               className="bg-slate-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option selected>Choose a category</option>
+              <option defaultValue="">Choose a category</option>
               <option value="Fiction">Fiction</option>
               <option value="Dystopian">Dystopian</option>
               <option value="Romance">Romance</option>
