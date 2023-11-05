@@ -31,6 +31,17 @@ const BookDetails = () => {
   const handleBorrowClick = () => {
     const borrowedInformation = { bookId: _id, name, email, returnDate };
 
+    if (!returnDate) {
+      toast.error("Please Provide Return Date and try again");
+      return;
+    }
+    if (!name) {
+      return toast.error("Please Enter Your Name");
+    }
+    if (!email) {
+      return toast.error("Please Provide Email");
+    }
+
     try {
       axios
         .post(`http://localhost:5000/borrowed`, borrowedInformation, {
@@ -126,8 +137,9 @@ const BookDetails = () => {
             {quantity?.toFixed(2)}
           </p>
           <button
+            disabled={quantity < 1 ? true : false}
             onClick={() => document.getElementById("borrow_modal").showModal()}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 md:px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 md:px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
           >
             Borrow
           </button>
@@ -232,8 +244,9 @@ const BookDetails = () => {
                 </button>
                 <button
                   type="submit"
+                  disabled={quantity < 1 ? true : false}
                   onClick={handleBorrowClick}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
                 >
                   Borrow
                 </button>
