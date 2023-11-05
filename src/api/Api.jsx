@@ -1,13 +1,17 @@
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+const Api = () => {
+  const axiosSecure = useAxiosSecure();
 
+  const getAllBook = async () => {
+    axiosSecure
+      .get("/allBook")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
-const getAllBook = async () => {
-  try {
-    const books = await axios.get();
-    return books.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return { getAllBook };
 };
 
-export { getAllBook };
+export default Api;

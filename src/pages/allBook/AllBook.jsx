@@ -1,10 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
+import Api from "../../api/Api";
 
 const AllBook = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const { getAllBook } = Api;
+  const { data } = useQuery({
+    queryKey: ["allBook"],
+    queryFn: getAllBook,
+  });
 
-export default AllBook
+  console.log(data);
+
+  return <div></div>;
+};
+
+export default AllBook;
