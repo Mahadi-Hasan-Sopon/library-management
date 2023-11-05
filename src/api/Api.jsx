@@ -9,21 +9,26 @@ const getAllBook = async () => {
   }
 };
 
-const getBooksByEmail = async (email) => {
+const getBooksIdByEmail = async (email) => {
   try {
-    const result = await apiSecure.get(`/allBook?email=${email}`);
+    const result = await apiSecure.get(`/borrowedBooks?email=${email}`);
     return result.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export { getAllBook, getBooksByEmail };
+const getBorrowedBooksById = async (ids) => {
+  // console.log(ids);
+  try {
+    const result = await apiSecure.post("/allBorrowedBooksId", { ids });
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// const api = axios.create({
-//   baseURL: "http://localhost:5000",
-//   headers: { "Content-Type": "application/json" },
-// });
+export { getAllBook, getBooksIdByEmail, getBorrowedBooksById };
 
 const apiSecure = axios.create({
   baseURL: "http://localhost:5000",
