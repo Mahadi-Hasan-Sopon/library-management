@@ -12,7 +12,7 @@ import auth from "../configs/firebase.config";
 export const AuthContext = createContext(null);
 
 const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,11 +26,11 @@ const AuthContextProvider = ({ children }) => {
 
   const createUserWithEmail = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
-    };
-    
-    const updateUserInfo = (displayName) => {
-        return updateProfile(auth.currentUser, {displayName})
-    }
+  };
+
+  const updateUserInfo = (displayName) => {
+    return updateProfile(auth.currentUser, { displayName });
+  };
 
   const loginUserWithEmail = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);

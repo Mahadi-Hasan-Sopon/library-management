@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { isLoading } = useAuth();
+  console.log(isLoading)
   return (
     <div className="w-full">
       <section className="bg-gray-50 dark:bg-gray-900">
