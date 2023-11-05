@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
   const book = useLoaderData();
@@ -14,6 +15,7 @@ const BookDetails = () => {
   const [returnDate, setReturnDate] = useState("");
 
   const {
+    _id,
     image,
     title,
     rating,
@@ -27,7 +29,7 @@ const BookDetails = () => {
   } = book;
 
   const handleBorrowClick = () => {
-    const borrowedInformation = { name, email, returnDate };
+    const borrowedInformation = { bookId: _id, name, email, returnDate };
 
     try {
       axios
@@ -36,6 +38,22 @@ const BookDetails = () => {
         })
         .then((res) => {
           console.log(res.data);
+          if (res.data.acknowledged && res.data.insertedId) {
+            axios
+              .patch(`http://localhost:5000/allBook/${_id}`, {
+                quantity: parseInt(quantity) - 1,
+              })
+              .then((res) => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                  toast.success("Book borrowed Successfully. Keep Reading!");
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error(err?.message);
+              });
+          }
         })
         .catch((err) => {
           console.log(err);
