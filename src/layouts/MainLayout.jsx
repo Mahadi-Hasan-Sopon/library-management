@@ -15,14 +15,14 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="drawer">
+    <div className="drawer overflow-x-hidden">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="w-full bg-base-300">
           <div className="flex items-center w-full max-w-7xl mx-auto px-8">
-            <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 lg:left-auto lg:-ms-10 ps-px -rotate-90 z-20">
-              <div className="flex justify-start items-start gap-2 absolute">
+            <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 lg:left-auto lg:-ms-6 ms-0.5 ps-px -rotate-90 z-20">
+              <div className="flex justify-center items-center gap-2 absolute">
                 <span className="text-sm">Toggle</span>
                 <input
                   type="checkbox"
@@ -69,7 +69,7 @@ const MainLayout = () => {
           </div>
         </div>
         {/* Page content here */}
-        <div className="mx-auto w-full max-w-7xl px-10">
+        <div className="mx-auto w-full max-w-7xl px-10 overflow-x-hidden">
           <Outlet />
         </div>
       </div>

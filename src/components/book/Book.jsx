@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import Rating from "react-rating";
 import { AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Book = ({ book }) => {
-  const { title, image, author, category, rating } = book || {};
+  const { _id, title, image, author, category, rating } = book || {};
   return (
     <div className="flex flex-col bg-base-100 shadow-xl rounded-lg">
       <figure>
@@ -26,9 +27,12 @@ const Book = ({ book }) => {
         </div>
         <div className="flex-grow"></div>
         <div className="flex justify-end">
-          <button className="btn btn-outline border-gray-700 border-2 dark:border-gray-500 hover:border-gray-700 hover:text-slate-100 dark:hover:text-gray-700 dark:hover:font-bold normal-case">
+          <Link
+            to={`/bookDetails/${_id}`}
+            className="btn btn-outline border-gray-700 border-2 dark:border-gray-500 hover:border-gray-700 hover:text-slate-100 dark:hover:text-gray-700 dark:hover:font-bold normal-case"
+          >
             See Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>
