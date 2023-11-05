@@ -21,7 +21,7 @@ const MainLayout = () => {
         {/* Navbar */}
         <div className="w-full bg-base-300">
           <div className="flex items-center w-full max-w-7xl mx-auto px-8">
-            <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 lg:left-auto lg:-ms-10 -rotate-90 z-20">
+            <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 lg:left-auto lg:-ms-10 ps-px -rotate-90 z-20">
               <input
                 type="checkbox"
                 className="toggle"
