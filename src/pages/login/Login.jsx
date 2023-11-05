@@ -1,10 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { isLoading } = useAuth();
-  console.log(isLoading)
+  const { loginUserWithEmail, SignInWithGoogle } = useAuth();
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      const toastId = toast.loading("Logging in ...");
+      loginUserWithEmail(email, password)
+        .then((res) => {
+          console.log(res.user);
+          toast.success("Login successful", { id: toastId });
+          navigate(location?.state ? location.state : "/");
+        })
+        .catch((err) => toast.error(err?.message));
+    } catch (error) {
+      toast.error(error?.message);
+      console.log(error);
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    try {
+      SignInWithGoogle().then((res) => {
+        console.log(res.user?.displayName);
+        toast.success("Login Successful...");
+        navigate(location?.state ? location.state : "/");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full">
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -14,7 +51,7 @@ const Login = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6">
+              <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
                 <div>
                   <label
                     htmlFor="email"
@@ -91,7 +128,10 @@ const Login = () => {
               </form>
               <div className="optional flex justify-center items-center">
                 <hr className="w-full flex-1" />
-                <button className="flex items-center gap-2 border py-2 px-6 text-gray-900 dark:text-white rounded-lg">
+                <button
+                  onClick={handleGoogleLogin}
+                  className="flex items-center gap-2 border py-2 px-6 text-gray-900 dark:text-white rounded-lg"
+                >
                   <FcGoogle className="text-2xl" />
                   Login with Google
                 </button>
