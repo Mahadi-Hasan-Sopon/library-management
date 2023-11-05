@@ -3,9 +3,10 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FcReading } from "react-icons/fc";
 
-
 const Navbar = () => {
-  const { user, LogOutUser } = useAuth();
+  const { user, LogOutUser, isLoading } = useAuth();
+
+  if (isLoading) return;
 
   const handleLogOut = () => {
     try {
@@ -60,7 +61,7 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <div className="flex gap-2 justify-center items-center flex-col-reverse lg:flex-row mt-2 lg:mt-auto">
+          <div className="flex gap-3 justify-center items-center flex-col-reverse lg:flex-row mt-2 lg:mt-auto">
             <div>
               <button
                 onClick={handleLogOut}
@@ -80,7 +81,9 @@ const Navbar = () => {
                 <FcReading className="text-4xl lg:text-3xl" />
               )}
 
-              <p className="text-lg font-bold"> {user?.displayName} </p>
+              <p className="text-lg font-bold">
+                {user?.displayName ? user.displayName : "User"}
+              </p>
             </div>
           </div>
         ) : (
