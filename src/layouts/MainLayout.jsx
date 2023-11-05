@@ -3,9 +3,16 @@ import Navbar from "./navbar/Navbar";
 import { GiSpellBook } from "react-icons/gi";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContextProvider";
+import LoadingSpinner from "../utils/LoadingSpinner";
+import useAuth from "../hooks/useAuth";
 
 const MainLayout = () => {
   const { toggleTheme, checked } = useContext(ThemeContext);
+  const { isLoading } = useAuth();
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="drawer">
@@ -40,7 +47,7 @@ const MainLayout = () => {
                 <GiSpellBook className="text-4xl -mt-2" />
                 Encyclopaedia
               </div>
-              <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 md:left-auto rotate-90 z-20">
+              <div className="toggle-div fixed top-1/2 transform -translate-y-1/2 left-0 lg:left-auto rotate-90 z-20">
                 <input
                   type="checkbox"
                   className="toggle"
@@ -50,7 +57,7 @@ const MainLayout = () => {
               </div>
             </div>
             <div className="flex-none hidden lg:block">
-              <div className="menu menu-horizontal font-semibold text-base">
+              <div className="menu menu-horizontal font-semibold text-base items-center">
                 {/* Navbar menu content here */}
                 <Navbar />
               </div>
