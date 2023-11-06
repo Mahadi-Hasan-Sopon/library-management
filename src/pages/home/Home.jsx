@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import "./Home.css";
-import { getCategories } from "../../api/Api";
+import { getBestSellingBooks, getCategories } from "../../api/Api";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
@@ -11,13 +11,17 @@ function Home() {
     queryFn: getCategories,
   });
 
-  // const bestSellingBooks = useQuery({queryKey: ["bestSellers"], queryFn: })
+  const bestSellingBooks = useQuery({
+    queryKey: ["bestSellers"],
+    queryFn: getBestSellingBooks,
+  });
 
   if (categories.isLoading) return <LoadingSpinner />;
+  if (bestSellingBooks.isLoading) return <LoadingSpinner />;
 
   return (
     <div>
-      <div className="banner">
+      <div className="banner mt-6">
         <div className="content p-20 ">
           <div className="min-h-[50vh] flex justify-center items-center flex-col">
             <h1 className="mb-5 text-3xl md:text-5xl font-bold text-slate-200 dark:text-slate-400">
@@ -51,7 +55,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="carousel-container mb-10">
+      <div className="carousel-container my-10">
         <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">
           <div className="item1">
             <div className="image xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full h-full">
@@ -71,8 +75,27 @@ function Home() {
         </Carousel>
       </div>
 
-      <div className="best-seller">
-        <div className="books"></div>
+      <div className="best-seller py-14 md:py-20">
+        <h1 className="text-4xl font-bold mb-10">Best Sellers: </h1>
+        <div className="books grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {bestSellingBooks.data?.map((book) => (
+            <div className="flex flex-col h-min" key={book._id}>
+              <Link
+                className="block mb-6 w-full h-full"
+                to={`/bookDetails/${book._id}`}
+              >
+                <img
+                  className="w-full h-96"
+                  src={book.image?.cover}
+                  alt={book.title}
+                />
+                <h2 className="text-xl font-medium text-center mt-3">
+                  {book.title}
+                </h2>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
