@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const BorrowedBooks = () => {
   const { user } = useAuth();
@@ -20,6 +21,14 @@ const BorrowedBooks = () => {
     queryFn: () => getBorrowedBooksById(ids),
     enabled: !!ids?.length,
   });
+
+  const [allBorrowedBook, setAllBorrowedBook] = useState(
+    borrowedBooksList.data || []
+  );
+
+  useEffect(() => {
+    setAllBorrowedBook(borrowedBooksList.data);
+  }, [borrowedBooksList.data]);
 
   if (
     booksId.isLoading ||
@@ -61,6 +70,10 @@ const BorrowedBooks = () => {
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
+                  const updatedAllBorrowedBook = borrowedBooksList.data.filter(
+                    (book) => book._id !== id
+                  );
+                  setAllBorrowedBook(updatedAllBorrowedBook);
                   toast.success("Book returned Successfully. Keep Reading!");
                 }
               })
@@ -71,6 +84,7 @@ const BorrowedBooks = () => {
           }
         })
         .catch((err) => {
+          toast.error(err?.message);
           console.log(err);
         });
     } catch (error) {
@@ -84,7 +98,7 @@ const BorrowedBooks = () => {
         Borrowed Books List
       </h1>
       <div className="borrowedBooks grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {borrowedBooksList?.data.map((book) => (
+        {allBorrowedBook?.map((book) => (
           <div
             key={book._id}
             className="flex flex-col bg-base-100 shadow-xl rounded-lg"
