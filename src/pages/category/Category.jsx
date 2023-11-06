@@ -1,9 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import Book from "../../components/book/Book";
+import { useEffect } from "react";
 
 const Category = () => {
   const books = useLoaderData();
-  console.log(books);
+
+  useEffect(() => {
+    window.scroll({ top: 0 });
+  }, []);
 
   return (
     <div>

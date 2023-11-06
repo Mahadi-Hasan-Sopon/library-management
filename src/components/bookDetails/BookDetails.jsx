@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -13,6 +13,11 @@ const BookDetails = () => {
   const [name, setName] = useState(user.displayName || "");
   const [email, setEmail] = useState(user.email || "");
   const [returnDate, setReturnDate] = useState("");
+  const [initialQuantity, setInitialQuantity] = useState(book?.quantity);
+
+  useEffect(() => {
+    window.scroll({ top: 90 });
+  }, []);
 
   const {
     _id,
@@ -58,6 +63,7 @@ const BookDetails = () => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                   toast.success("Book borrowed Successfully. Keep Reading!");
+                  setInitialQuantity(initialQuantity - 1);
                 }
               })
               .catch((err) => {
@@ -136,7 +142,7 @@ const BookDetails = () => {
             <span className="font-medium text-lg text-slate-500 dark:text-slate-400">
               Quantity:{" "}
             </span>
-            {quantity?.toFixed(2)}
+            {initialQuantity?.toFixed(2)}
           </p>
           <button
             disabled={quantity < 1 ? true : false}
