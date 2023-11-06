@@ -1,0 +1,192 @@
+[
+    {
+        "id": 60,
+        "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+        "author": "Robert C. Martin",
+        "category": "Programming",
+        "publication_year": 2008,
+        "ISBN": "978-0132350884",
+        "quantity": 10,
+        "tags": [
+            "software development",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/0FwrwRL/3735293.jpg",
+            "page_demo": "https://i.ibb.co/9c7DgCZ/91-AN1f-UXD-L.jpg"
+        },
+        "short_description": "A guide to writing clean and maintainable code.",
+        "description": "In 'Clean Code,' Robert C. Martin provides practical advice and best practices for writing clean, readable, and maintainable code for software developers.",
+        "rating": {
+            "rate": 4.7,
+            "count": 54
+        }
+    },
+    {
+        "id": 61,
+        "title": "The Pragmatic Programmer: Your Journey to Mastery",
+        "author": "Andrew Hunt and David Thomas",
+        "category": "Programming",
+        "publication_year": 1999,
+        "ISBN": "978-0201616224",
+        "quantity": 8,
+        "tags": [
+            "software development",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/0cKKfHR/tpp20.jpg",
+            "page_demo": "https://i.ibb.co/b5pk2CH/51-YZm-C8-X5o-L-AC-UF1000-1000-QL80.jpg"
+        },
+        "short_description": "Learn pragmatic and effective programming techniques.",
+        "description": "'The Pragmatic Programmer' by Andrew Hunt and David Thomas offers practical advice, tips, and techniques to help programmers become more effective and efficient in their work.",
+        "rating": {
+            "rate": 4.6,
+            "count": 48
+        }
+    },
+    {
+        "id": 62,
+        "title": "Introduction to Algorithms",
+        "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+        "category": "Programming",
+        "publication_year": 2009,
+        "ISBN": "978-0262033848",
+        "quantity": 12,
+        "tags": [
+            "algorithm",
+            "textbook",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/zsw4HQw/collid-books-covers-0-isbn-9780262046305-type-1.jpg",
+            "page_demo": "https://i.ibb.co/Thgywhp/81yay-E4-TLEL-AC-UF1000-1000-QL80.jpg"
+        },
+        "short_description": "A comprehensive guide to algorithms and data structures.",
+        "description": " 'Introduction to Algorithms' is a widely-used textbook that provides a comprehensive introduction to algorithms and data structures for computer science students and professionals.",
+        "rating": {
+            "rate": 4.8,
+            "count": 64
+        }
+    },
+    {
+        "id": 63,
+        "title": "JavaScript: The Good Parts",
+        "author": "Douglas Crockford",
+        "category": "Programming",
+        "publication_year": 2008,
+        "ISBN": "978-0596517748",
+        "quantity": 7,
+        "tags": [
+            "JavaScript",
+            "best practices",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/x7YcBdG/71ip1mx-Z8c-L-AC-UF894-1000-QL80.jpg",
+            "page_demo": "https://i.ibb.co/Dbqf68H/81-If-Lqw-LIL-AC-UF1000-1000-QL80.jpg"
+        },
+        "short_description": "Discover the good parts of JavaScript programming.",
+        "description": "Douglas Crockford's 'JavaScript: The Good Parts' focuses on the best practices and effective techniques for writing high-quality JavaScript code.",
+        "rating": {
+            "rate": 4.5,
+            "count": 52
+        }
+    },
+    {
+        "id": 64,
+        "title": "Cracking the Coding Interview",
+        "author": "Gayle Laakmann McDowell",
+        "category": "Programming",
+        "publication_year": 2015,
+        "ISBN": "978-0984782857",
+        "quantity": 9,
+        "tags": [
+            "interview",
+            "algorithm",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/y5Z5Q9z/be099abf9-127699.jpg",
+            "page_demo": "https://i.ibb.co/ZmGpcnJ/cracking-the-interview-skills-coding-soft-skills-product-management-handouts-1-320.jpg"
+        },
+        "short_description": "Prepare for technical job interviews with coding questions and solutions.",
+        "description": " 'Cracking the Coding Interview' by Gayle Laakmann McDowell provides a comprehensive guide to preparing for technical job interviews with coding questions and solutions.",
+        "rating": {
+            "rate": 4.7,
+            "count": 56
+        }
+    },
+    {
+        "id": 65,
+        "title": "Python Crash Course",
+        "author": "Eric Matthes",
+        "category": "Programming",
+        "publication_year": 2015,
+        "ISBN": "978-1593276034",
+        "quantity": 11,
+        "tags": [
+            "Python",
+            "beginner",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/ykkDgPH/71s-L0-Qpd-YL-AC-UF894-1000-QL80.jpg",
+            "page_demo": "https://i.ibb.co/bK9dXLY/images-q-tbn-ANd9-Gc-Ry-Wqjdve-QOw-FLk-Yn55-Op-LWMOwztu9c-Tjb-SQ-usqp-CAU.png"
+        },
+        "short_description": "Learn Python programming quickly and effectively.",
+        "description": "'Python Crash Course' by Eric Matthes is a beginner-friendly guide to learning Python programming through hands-on projects and exercises.",
+        "rating": {
+            "rate": 4.6,
+            "count": 50
+        }
+    },
+    {
+        "id": 66,
+        "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+        "author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+        "category": "Programming",
+        "publication_year": 1994,
+        "ISBN": "978-0201633610",
+        "quantity": 6,
+        "tags": [
+            "software design",
+            "object-oriented programming",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/yX0xwKG/81gt-Koap-HFL-AC-UF1000-1000-QL80.jpg",
+            "page_demo": "https://i.ibb.co/NtvXpSK/280765-280784-fp.png"
+        },
+        "short_description": "Explore reusable design patterns in software development.",
+        "description": " 'Design Patterns' introduces key design patterns in software development, providing solutions to common design problems in an object-oriented way.",
+        "rating": {
+            "rate": 4.4,
+            "count": 44
+        }
+    },
+    {
+        "id": 67,
+        "title": "The Art of Computer Programming, Volumes 1-3 Boxed Set",
+        "author": "Donald E. Knuth",
+        "category": "Programming",
+        "publication_year": 2011,
+        "ISBN": "978-0321751041",
+        "quantity": 5,
+        "tags": [
+            "algorithm",
+            "computer science",
+            "best seller"
+        ],
+        "image": {
+            "cover": "https://i.ibb.co/HCBZNPB/112247.jpg",
+            "page_demo": "https://i.ibb.co/7KrLgpW/images-q-tbn-ANd9-Gc-SJTL7n-J2-Xq-Br7-Z7y-DMm-DHSOSv-Kl-Iwr-Ihdvt-Q-usqp-CAU.jpg"
+        },
+        "short_description": "A comprehensive guide to computer programming and algorithms.",
+        "description": " 'The Art of Computer Programming' by Donald E. Knuth is a classic work that delves into the theory and practice of computer programming and algorithms.",
+        "rating": {
+            "rate": 4.8,
+            "count": 58
+        }
+    }
+]

@@ -3,7 +3,7 @@ import Rating from "react-rating";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const Book = ({ book }) => {
+const Book = ({ book, categoryValue }) => {
   const { _id, title, image, author, category, rating } = book || {};
   return (
     <div className="flex flex-col bg-base-100 shadow-xl rounded-lg">
@@ -19,7 +19,11 @@ const Book = ({ book }) => {
       <div className="flex flex-col flex-grow py-3 px-1">
         <div className="flex flex-col space-y-2">
           <h2 className="card-title">{title} </h2>
-          <p className="text-lg font-medium">Category: {category} </p>
+          {categoryValue !== false ? (
+            <p className="text-lg font-medium">Category: {category} </p>
+          ) : (
+            ""
+          )}
           <p className="text-base font-medium">Author: {author} </p>
           <div className="ratting">
             <Rating
@@ -47,6 +51,7 @@ const Book = ({ book }) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  categoryValue: PropTypes.bool,
 };
 
 export default Book;

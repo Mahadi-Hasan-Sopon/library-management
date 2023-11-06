@@ -28,7 +28,31 @@ const getBorrowedBooksById = async (ids) => {
   }
 };
 
-export { getAllBook, getBooksIdByEmail, getBorrowedBooksById };
+const getCategories = async () => {
+  try {
+    const categories = await axios.get("http://localhost:5000/categories");
+    return categories.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getBestSellingBooks = async () => {
+  try {
+    const result = await axios.get("http://localhost:5000/bestSellers");
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getAllBook,
+  getBooksIdByEmail,
+  getBorrowedBooksById,
+  getCategories,
+  getBestSellingBooks,
+};
 
 const apiSecure = axios.create({
   baseURL: "http://localhost:5000",

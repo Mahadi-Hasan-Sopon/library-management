@@ -16,7 +16,7 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="drawer overflow-x-hidden">
+    <div className="drawer block">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
