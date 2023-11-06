@@ -8,7 +8,13 @@ const Book = ({ book }) => {
   return (
     <div className="flex flex-col bg-base-100 shadow-xl rounded-lg">
       <figure>
-        <img className="w-full h-96" src={image?.cover} alt={title} />
+        <img
+          className="w-full h-96"
+          src={
+            image?.cover ? image.cover : "https://i.ibb.co/Z2qKCVc/image.png"
+          }
+          alt={title}
+        />
       </figure>
       <div className="flex flex-col flex-grow py-3 px-1">
         <div className="flex flex-col space-y-2">

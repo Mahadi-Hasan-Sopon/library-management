@@ -8,6 +8,7 @@ import AuthContextProvider from "./contexts/AuthContextProvider.jsx";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const queryClient = new QueryClient();
 

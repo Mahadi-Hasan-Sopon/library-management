@@ -79,7 +79,9 @@ const BookDetails = () => {
       <div className="left w-full h-full">
         <img
           className="w-full h-full max-h-[75%] sm:max-h-[90%]"
-          src={image?.cover}
+          src={
+            image?.cover ? image.cover : "https://i.ibb.co/Z2qKCVc/image.png"
+          }
           alt=""
         />
         <div className="ratting flex flex-col items-center gap-4 justify-center pt-6">

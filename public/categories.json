@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "category": "Fiction",
+        "image": "https://i.ibb.co/3Tm1L6h/636611f1b21984-91984812.jpg"
+    },
+    {
+        "id": 2,
+        "category": "Dystopian",
+        "image": "https://i.ibb.co/nscNTfm/9781568585987.jpg"
+    },
+    {
+        "id": 3,
+        "category": "Romance",
+        "image": "https://i.ibb.co/Fx0FHwm/Romance.jpg"
+    },
+    {
+        "id": 4,
+        "category": "Fantasy",
+        "image": "https://i.ibb.co/ccTkzcT/SCIENCE-FICTION-amp-FANTASY.jpg"
+    },
+    {
+        "id": 5,
+        "category": "Science & Math",
+        "image": "https://i.ibb.co/7t0Kr28/63546b5fe16b92-59883115.jpg"
+    },
+    {
+        "id": 6,
+        "category": "History",
+        "image": "https://i.ibb.co/xm6q2BH/History.jpg"
+    }
+]

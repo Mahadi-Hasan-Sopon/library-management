@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import useAuth from "../hooks/useAuth";
+import Footer from "../components/footer/Footer";
 
 const MainLayout = () => {
   const { toggleTheme, checked } = useContext(ThemeContext);
@@ -71,6 +72,7 @@ const MainLayout = () => {
         {/* Page content here */}
         <div className="mx-auto w-full max-w-7xl px-10 overflow-x-hidden">
           <Outlet />
+          <Footer />
         </div>
       </div>
       <div className="drawer-side">
