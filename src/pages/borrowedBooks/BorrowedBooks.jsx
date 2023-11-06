@@ -5,6 +5,7 @@ import LoadingSpinner from "../../utils/LoadingSpinner";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const BorrowedBooks = () => {
   const { user } = useAuth();
@@ -30,12 +31,7 @@ const BorrowedBooks = () => {
     setAllBorrowedBook(borrowedBooksList.data);
   }, [borrowedBooksList.data]);
 
-  if (
-    booksId.isLoading ||
-    booksId.isPending ||
-    borrowedBooksList.isPending ||
-    borrowedBooksList.isLoading
-  ) {
+  if (borrowedBooksList.isLoading && booksId.isLoading) {
     return <LoadingSpinner />;
   }
 
@@ -94,39 +90,57 @@ const BorrowedBooks = () => {
 
   return (
     <div className="py-10 md:py-20">
-      <h1 className="text-2xl md:text-3xl font-bold text-center mb-10">
-        Borrowed Books List
-      </h1>
+      {allBorrowedBook?.length ? (
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-10">
+          Borrowed Books List
+        </h1>
+      ) : (
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-10">
+          <span className="block mb-4">Not Borrowed yet!</span>
+          Visit{" "}
+          <Link className="border rounded px-3 py-1 mx-2 text-lg border-gray-500" to={"/allBook"}>
+            All Book
+          </Link>{" "}
+          Route to Borrow.
+        </h1>
+      )}
       <div className="borrowedBooks grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {allBorrowedBook?.map((book) => (
-          <div
-            key={book._id}
-            className="flex flex-col bg-base-100 shadow-xl rounded-lg"
-          >
-            <figure>
-              <img className="w-full h-96" src={book.image.cover} alt="Shoes" />
-            </figure>
-            <div className="flex flex-col flex-grow py-3 px-1">
-              <div className="flex flex-col space-y-2">
-                <h2 className="card-title">{book.title}</h2>
-                <p className="text-lg font-medium">Category: {book.category}</p>
-                <div className="text-base font-medium">
-                  Borrowed Date: {getBorrowedDate(book._id)}
+        {borrowedBooksList?.data?.length &&
+          allBorrowedBook?.map((book) => (
+            <div
+              key={book._id}
+              className="flex flex-col bg-base-100 shadow-xl rounded-lg"
+            >
+              <figure>
+                <img
+                  className="w-full h-96"
+                  src={book.image.cover}
+                  alt="Shoes"
+                />
+              </figure>
+              <div className="flex flex-col flex-grow py-3 px-1">
+                <div className="flex flex-col space-y-2">
+                  <h2 className="card-title">{book.title}</h2>
+                  <p className="text-lg font-medium">
+                    Category: {book.category}
+                  </p>
+                  <div className="text-base font-medium">
+                    Borrowed Date: {getBorrowedDate(book._id)}
+                  </div>
+                  <div className="text-base font-medium">
+                    Return Date: {getReturnDate(book._id)}
+                  </div>
                 </div>
-                <div className="text-base font-medium">
-                  Return Date: {getReturnDate(book._id)}
-                </div>
+                <div className="flex-grow mb-4"></div>
+                <button
+                  onClick={() => handleReturnClick(book._id, book?.quantity)}
+                  className="block w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 md:px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
+                >
+                  Return
+                </button>
               </div>
-              <div className="flex-grow mb-4"></div>
-              <button
-                onClick={() => handleReturnClick(book._id, book?.quantity)}
-                className="block w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 md:px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
-              >
-                Return
-              </button>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
