@@ -17,11 +17,13 @@ const BookDetails = () => {
 
   useEffect(() => {
     window.scroll({ top: 90 });
+  }, []);
 
+  if (user) {
     try {
       axios
         .get(
-          `https://encyclopaedia-server.vercel.app/borrowedBooks/${book._id}?email=${user?.email}`
+          `https://encyclopaedia-server.vercel.app/borrowedBooks/${book._id}?email=${user?.email}`,{withCredentials: true} 
         )
         .then((res) => {
           if (res.data?.bookId == book._id) {
@@ -35,7 +37,7 @@ const BookDetails = () => {
       console.log(error);
       toast.error(error?.message);
     }
-  }, [book._id, user.email]);
+  }
 
   const {
     _id,
