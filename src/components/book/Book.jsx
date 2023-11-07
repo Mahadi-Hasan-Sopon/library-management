@@ -36,7 +36,13 @@ const Book = ({ book, categoryValue }) => {
           </div>
         </div>
         <div className="flex-grow"></div>
-        <div className="flex justify-end">
+        <div className="flex justify-between gap-4">
+          <Link
+            to={`/book/update/${_id}`}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
+          >
+            Update
+          </Link>
           <Link
             to={`/bookDetails/${_id}`}
             className="btn btn-outline border-gray-700 border-2 dark:border-gray-500 hover:border-gray-700 hover:text-slate-100 dark:hover:text-gray-700 dark:hover:font-bold normal-case"
