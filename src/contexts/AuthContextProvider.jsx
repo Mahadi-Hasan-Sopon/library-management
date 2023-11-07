@@ -18,10 +18,27 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // TODO: Use JWT token for doing the CRUD operations in the "All Books" and `Add Book` routes
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
+
+      if (currentUser) {
+        const userDetails = { email: currentUser.email };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userDetails),
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((err) => console.log(err));
+      }
     });
 
     return () => unSubscribe();
