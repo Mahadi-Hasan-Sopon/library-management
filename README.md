@@ -20,6 +20,5 @@
       do this, please, provide the email and password of the account which has the "librarian" role in
       the README.md file.
 - 2.  Use Axios interceptors for handling network requests.
-- 3.  Use Swiper JS for banner and slider.
 - 5.  Use ReactToPDF or any relevant package to make the PDF version of the "Read" page of a book.
 - \*/

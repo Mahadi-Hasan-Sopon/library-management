@@ -1,4 +1,29 @@
 import axios from "axios";
+import auth from "../configs/firebase.config";
+
+const apiSecure = axios.create({
+  baseURL: "http://localhost:5000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
+
+apiSecure.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    console.log("error in interceptor", error.response);
+    if (error.response.status === 401 || error.response.status === 403) {
+      // console.log("logOut the user");
+      auth
+        .signOut()
+        .then(() => console.log("User SignOut Successfully"))
+        .catch((err) => console.log(err));
+    }
+  }
+);
 
 const getAllBook = async () => {
   try {
@@ -63,11 +88,3 @@ export {
   getBestSellingBooks,
   getIsBorrowedBook,
 };
-
-const apiSecure = axios.create({
-  baseURL: "http://localhost:5000",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-});
