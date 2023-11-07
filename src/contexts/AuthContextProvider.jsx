@@ -18,8 +18,6 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // TODO: Use JWT token for doing the CRUD operations in the "All Books" and `Add Book` routes
-
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

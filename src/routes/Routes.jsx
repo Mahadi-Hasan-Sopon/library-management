@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/home/Home";
-import AddBook from "../pages/addBook/AddBook";
+// import AddBook from "../pages/addBook/AddBook";
+import AddBookByHookForm from "../pages/addBook/AddBookByHookForm";
 import AllBook from "../pages/allBook/AllBook";
 import BorrowedBooks from "../pages/borrowedBooks/BorrowedBooks";
 import Login from "../pages/login/Login";
@@ -26,7 +27,8 @@ const routes = createBrowserRouter([
         path: "addBook",
         element: (
           <PrivateRoute>
-            <AddBook />
+            {/* <AddBook /> */}
+            <AddBookByHookForm />
           </PrivateRoute>
         ),
       },
