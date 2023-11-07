@@ -24,3 +24,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.banner-with-swiper .content {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+    url("https://i.ibb.co/8jBv5xn/62c562f5bfcd62-92139011.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}

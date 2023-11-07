@@ -21,6 +21,5 @@
       the README.md file.
 - 2.  Use Axios interceptors for handling network requests.
 - 3.  Use Swiper JS for banner and slider.
-- 4.  Use the React Hook Form for handling any form.
 - 5.  Use ReactToPDF or any relevant package to make the PDF version of the "Read" page of a book.
 - \*/

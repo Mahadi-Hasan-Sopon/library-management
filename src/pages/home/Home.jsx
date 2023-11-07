@@ -2,8 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import "./Home.css";
 import { getBestSellingBooks, getCategories } from "../../api/Api";
 import LoadingSpinner from "../../utils/LoadingSpinner";
-import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function Home() {
   const categories = useQuery({
@@ -21,20 +24,24 @@ function Home() {
 
   return (
     <div>
-      <div className="banner mt-6">
-        <div className="content p-20 ">
-          <div className="min-h-[50vh] flex justify-center items-center flex-col">
-            <h1 className="mb-5 text-3xl md:text-5xl font-bold text-slate-200 dark:text-slate-400">
-              Access To Thousands of Free Ebooks
-            </h1>
-            <h1 className="mb-5 text-4xl font-bold text-slate-200 dark:text-slate-400">
-              Borrow or Read Online
-            </h1>
-            <button className="btn btn-primary dark:text-gray-100">
-              Get Started
-            </button>
-          </div>
-        </div>
+      <div className="banner-with-swiper">
+        <Swiper>
+          <SwiperSlide>
+            <div className="content p-20 ">
+              <div className="min-h-[50vh] flex justify-center items-center flex-col">
+                <h1 className="mb-5 text-3xl md:text-5xl font-bold text-slate-200 dark:text-slate-400">
+                  Access To Thousands of Free Ebooks
+                </h1>
+                <h1 className="mb-5 text-4xl font-bold text-slate-200 dark:text-slate-400">
+                  Borrow or Read Online
+                </h1>
+                <button className="btn btn-primary dark:text-gray-100">
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <div className="category-container py-14 md:py-20">
@@ -55,24 +62,42 @@ function Home() {
         </div>
       </div>
 
-      <div className="carousel-container my-10">
-        <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">
-          <div className="item1">
-            <div className="image xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full h-full">
-              <div className="content w-full min-h-[40vh]"></div>
+      <div className="carousel-with-swiper my-10">
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 3000,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="item1">
+              <div className="image xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full h-full">
+                <div className="content w-full min-h-[40vh]"></div>
+              </div>
             </div>
-          </div>
-          <div className="item2">
-            <div className="image2 xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full">
-              <div className="content w-full min-h-[40vh]"></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="item2">
+              <div className="image2 xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full">
+                <div className="content w-full min-h-[40vh]"></div>
+              </div>
             </div>
-          </div>
-          <div className="item3">
-            <div className="image3 xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full">
-              <div className="content w-full min-h-[40vh]"></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="item3">
+              <div className="image3 xl:rounded-lg rounded-s-none flex justify-start px-10 py-24 w-full">
+                <div className="content w-full min-h-[40vh]"></div>
+              </div>
             </div>
-          </div>
-        </Carousel>
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <div className="best-seller py-14 md:py-20">
