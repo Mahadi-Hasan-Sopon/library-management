@@ -63,7 +63,7 @@ const routes = createBrowserRouter([
           fetch(`http://localhost:5000/bookDetails/${params.bookId}`),
       },
       {
-        path: "/allBook/:category",
+        path: "/books/:category",
         element: (
           <PrivateRoute>
             <Category />

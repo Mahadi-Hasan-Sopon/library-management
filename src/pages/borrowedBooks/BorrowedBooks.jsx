@@ -60,7 +60,7 @@ const BorrowedBooks = () => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             axios
-              .patch(`http://localhost:5000/allBook/${id}`, {
+              .patch(`http://localhost:5000/allBook/update/${id}`, {
                 quantity: parseInt(quantity) + 1,
               })
               .then((res) => {
@@ -98,7 +98,10 @@ const BorrowedBooks = () => {
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-10">
           <span className="block mb-4">Not Borrowed yet!</span>
           Visit{" "}
-          <Link className="border rounded px-3 py-1 mx-2 text-lg border-gray-500" to={"/allBook"}>
+          <Link
+            className="border rounded px-3 py-1 mx-2 text-lg border-gray-500"
+            to={"/allBook"}
+          >
             All Book
           </Link>{" "}
           Route to Borrow.
