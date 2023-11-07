@@ -21,7 +21,7 @@ const BookDetails = () => {
     try {
       axios
         .get(
-          `http://localhost:5000/borrowedBooks/${book._id}?email=${user?.email}`
+          `https://encyclopaedia-server.vercel.app/borrowedBooks/${book._id}?email=${user?.email}`
         )
         .then((res) => {
           if (res.data?.bookId == book._id) {
@@ -68,16 +68,23 @@ const BookDetails = () => {
     try {
       const toastId = toast.loading("Borrowing Book, Please wait.");
       axios
-        .post(`http://localhost:5000/borrowed`, borrowedInformation, {
-          withCredentials: true,
-        })
+        .post(
+          `https://encyclopaedia-server.vercel.app/borrowed`,
+          borrowedInformation,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res.data);
           if (res.data.acknowledged && res.data.insertedId) {
             axios
-              .patch(`http://localhost:5000/allBook/update/${_id}`, {
-                quantity: parseInt(quantity) - 1,
-              })
+              .patch(
+                `https://encyclopaedia-server.vercel.app/allBook/update/${_id}`,
+                {
+                  quantity: parseInt(quantity) - 1,
+                }
+              )
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

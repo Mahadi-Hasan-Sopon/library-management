@@ -64,7 +64,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookDetails/${params.bookId}`),
+          fetch(
+            `https://encyclopaedia-server.vercel.app/bookDetails/${params.bookId}`
+          ),
       },
       {
         path: "/books/:category",
@@ -74,7 +76,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.category}`),
+          fetch(
+            `https://encyclopaedia-server.vercel.app/books/${params.category}`
+          ),
       },
       {
         path: "/book/update/:bookId",
@@ -84,7 +88,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookDetails/${params.bookId}`),
+          fetch(
+            `https://encyclopaedia-server.vercel.app/bookDetails/${params.bookId}`
+          ),
       },
     ],
   },
