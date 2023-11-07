@@ -1,7 +1,58 @@
+import axios from "axios";
+import toast from "react-hot-toast";
+
 const AddBook = () => {
+  const handleAddBookClick = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const title = form.title.value;
+    const author = form.author.value;
+    const category = form.category.value;
+    const quantity = form.quantity.value;
+    const rate = form.rating.value;
+    const cover = form.cover.value;
+    const page_demo = form.page_demo.value;
+    const short_description = form.short_description.value;
+    const description = form.description.value;
+    const newBook = {
+      title,
+      author,
+      category,
+      quantity: parseInt(quantity),
+      rating: { rate: parseFloat(rate), count: 1 },
+      image: { cover: cover, page_demo: page_demo },
+      short_description,
+      description,
+    };
+
+    const toastId = toast.loading("Adding new Book....");
+    try {
+      axios
+        .post(`http://localhost:5000/allBook`, newBook, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.inserterId) {
+            toast.success("New Book Added Successfully.", { id: toastId });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err?.message, { id: toastId });
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message, { id: toastId });
+    }
+  };
+
   return (
     <div className="py-10">
-      <form className="bg-slate-100 dark:bg-base-200 py-4 md:py-10 px-4 md:px-10 rounded">
+      <form
+        onSubmit={handleAddBookClick}
+        className="bg-slate-100 dark:bg-base-200 py-4 md:py-10 px-4 md:px-10 rounded"
+      >
         <h1 className="text-3xl font-bold text-slate-700 dark:text-slate-500 text-center mb-6">
           Add New Book
         </h1>
@@ -59,14 +110,15 @@ const AddBook = () => {
               <option value="Fantasy">Fantasy</option>
               <option value="Science & Math">Science & Math</option>
               <option value="History">History</option>
+              <option value="Programming">Programming</option>
             </select>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <div className="flex justify-between gap-6 w-full">
               <div className="quantity flex-1">
                 <input
-                  type="text"
                   name="quantity"
+                  type="text"
                   id="quantity"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -81,7 +133,7 @@ const AddBook = () => {
               </div>
               <div className="ratting flex-1 relative">
                 <input
-                  name="ratting"
+                  name="rating"
                   type="text"
                   id="ratting"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -104,15 +156,15 @@ const AddBook = () => {
         <div className="grid md:grid-cols-2 md:gap-6 items-center">
           <div className="relative z-0 w-full mb-6 group">
             <input
+              name="cover"
               type="text"
-              name="image"
-              id="image"
+              id="cover"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              htmlFor="image"
+              htmlFor="cover"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6"
             >
               Cover Photo Url
@@ -120,8 +172,26 @@ const AddBook = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
+              name="page_demo"
               type="text"
+              id="page_demo"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              htmlFor="page_demo"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6"
+            >
+              Page Demo Photo Url
+            </label>
+          </div>
+        </div>
+        <div className="grid">
+          <div className="relative z-0 w-full mb-6 group">
+            <input
               name="short_description"
+              type="text"
               id="short_description"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
