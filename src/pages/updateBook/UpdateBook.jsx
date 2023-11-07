@@ -1,3 +1,4 @@
+import { QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
@@ -6,6 +7,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 const UpdateBook = () => {
   const book = useLoaderData();
   const navigate = useNavigate();
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     window.scroll({ top: 50 });
@@ -52,6 +54,7 @@ const UpdateBook = () => {
           console.log(res.data);
           if (res.data.modifiedCount > 0) {
             toast.success("Book Updated Successfully.", { id: toastId });
+            queryClient.invalidateQueries({ queryKey: ["allBook"] });
           }
 
           if (

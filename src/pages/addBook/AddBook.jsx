@@ -1,7 +1,10 @@
+import { QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const AddBook = () => {
+  const queryClient = new QueryClient();
+
   const handleAddBookClick = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -35,6 +38,7 @@ const AddBook = () => {
           console.log(res.data);
           if (res.data.inserterId) {
             toast.success("New Book Added Successfully.", { id: toastId });
+            queryClient.invalidateQueries({ queryKey: ["allBook"] });
           }
         })
         .catch((err) => {
