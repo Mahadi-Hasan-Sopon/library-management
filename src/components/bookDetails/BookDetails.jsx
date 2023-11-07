@@ -18,18 +18,23 @@ const BookDetails = () => {
   useEffect(() => {
     window.scroll({ top: 90 });
 
-    axios
-      .get(
-        `http://localhost:5000/borrowedBooks/${book._id}?email=${user?.email}`
-      )
-      .then((res) => {
-        if (res.data?.bookId == book._id) {
-          setIsAlreadyBorrowed(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      axios
+        .get(
+          `http://localhost:5000/borrowedBooks/${book._id}?email=${user?.email}`
+        )
+        .then((res) => {
+          if (res.data?.bookId == book._id) {
+            setIsAlreadyBorrowed(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
   }, [book._id, user.email]);
 
   const {
@@ -61,6 +66,7 @@ const BookDetails = () => {
     }
 
     try {
+      const toastId = toast.loading("Borrowing Book, Please wait.");
       axios
         .post(`http://localhost:5000/borrowed`, borrowedInformation, {
           withCredentials: true,
@@ -75,19 +81,22 @@ const BookDetails = () => {
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                  toast.success("Book borrowed Successfully. Keep Reading!");
+                  toast.success("Book borrowed Successfully. Keep Reading!", {
+                    id: toastId,
+                  });
                   setInitialQuantity(initialQuantity - 1);
                   setIsAlreadyBorrowed(true);
                 }
               })
               .catch((err) => {
                 console.log(err);
-                toast.error(err?.message);
+                toast.error(err?.message, { id: toastId });
               });
           }
         })
         .catch((err) => {
           console.log(err);
+          toast.remove(toastId);
         });
     } catch (error) {
       console.log(error);
