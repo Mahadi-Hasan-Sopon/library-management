@@ -39,6 +39,7 @@ const UpdateBook = () => {
     };
 
     try {
+      const toastId = toast.loading("Updating Book...");
       axios
         .patch(
           `http://localhost:5000/allBook/update/${book._id}`,
@@ -49,9 +50,21 @@ const UpdateBook = () => {
         )
         .then((res) => {
           console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            toast.success("Book Updated Successfully.", { id: toastId });
+          }
+
+          if (
+            res.data.acknowledged &&
+            res.data.modifiedCount == 0 &&
+            res.data.matchedCount
+          ) {
+            toast("Book Already Updated!.", { id: toastId });
+          }
         })
         .catch((err) => {
           console.log(err);
+          toast.error(err?.message);
         });
     } catch (error) {
       console.log(error);

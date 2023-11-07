@@ -28,6 +28,15 @@ const getBorrowedBooksById = async (ids) => {
   }
 };
 
+const getIsBorrowedBook = async (id, email) => {
+  try {
+    const result = await apiSecure.get(`/borrowedBooks/${id}?email=${email}`);
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getCategories = async () => {
   try {
     const categories = await axios.get("http://localhost:5000/categories");
@@ -52,6 +61,7 @@ export {
   getBorrowedBooksById,
   getCategories,
   getBestSellingBooks,
+  getIsBorrowedBook,
 };
 
 const apiSecure = axios.create({

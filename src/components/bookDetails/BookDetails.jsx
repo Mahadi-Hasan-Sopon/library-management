@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const BookDetails = () => {
   const book = useLoaderData();
   const { user } = useAuth();
-
+  const [isAlreadyBorrowed, setIsAlreadyBorrowed] = useState(false);
   const [name, setName] = useState(user.displayName || "");
   const [email, setEmail] = useState(user.email || "");
   const [returnDate, setReturnDate] = useState("");
@@ -17,7 +17,20 @@ const BookDetails = () => {
 
   useEffect(() => {
     window.scroll({ top: 90 });
-  }, []);
+
+    axios
+      .get(
+        `http://localhost:5000/borrowedBooks/${book._id}?email=${user?.email}`
+      )
+      .then((res) => {
+        if (res.data?.bookId == book._id) {
+          setIsAlreadyBorrowed(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [book._id, user.email]);
 
   const {
     _id,
@@ -64,6 +77,7 @@ const BookDetails = () => {
                 if (res.data.modifiedCount > 0) {
                   toast.success("Book borrowed Successfully. Keep Reading!");
                   setInitialQuantity(initialQuantity - 1);
+                  setIsAlreadyBorrowed(true);
                 }
               })
               .catch((err) => {
@@ -145,11 +159,11 @@ const BookDetails = () => {
             {initialQuantity?.toFixed(2)}
           </p>
           <button
-            disabled={quantity < 1 ? true : false}
+            disabled={quantity < 1 || isAlreadyBorrowed ? true : false}
             onClick={() => document.getElementById("borrow_modal").showModal()}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-6 md:px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
           >
-            Borrow
+            {isAlreadyBorrowed ? "Borrowed" : "Borrow"}
           </button>
         </div>
         <div className="divider py-6"></div>
