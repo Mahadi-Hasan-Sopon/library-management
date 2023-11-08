@@ -26,7 +26,7 @@ function Admin() {
           console.log(res.user);
           toast.success("Login successful", { id: toastId });
 
-          fetch("http://localhost:5000/admin", {
+          fetch("https://encyclopaedia-server.vercel.app/admin", {
             method: "POST",
             credentials: "include",
             headers: {

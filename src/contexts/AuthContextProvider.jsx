@@ -25,7 +25,7 @@ const AuthContextProvider = ({ children }) => {
 
       if (currentUser) {
         const userDetails = { email: currentUser.email };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://encyclopaedia-server.vercel.app/jwt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userDetails),
@@ -64,7 +64,7 @@ const AuthContextProvider = ({ children }) => {
   const LogOutUser = async () => {
     setIsLoading(true);
     return signOut(auth).then(() => {
-      fetch("http://localhost:5000/logOut", {
+      fetch("https://encyclopaedia-server.vercel.app/logOut", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
