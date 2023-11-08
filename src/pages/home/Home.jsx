@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import "./Home.css";
-import { getBestSellingBooks, getCategories } from "../../api/Api";
+import useApi from "../../api/Api";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,14 +9,16 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 function Home() {
+  const api = useApi();
+
   const categories = useQuery({
     queryKey: ["categories"],
-    queryFn: getCategories,
+    queryFn: api.getCategories,
   });
 
   const bestSellingBooks = useQuery({
     queryKey: ["bestSellers"],
-    queryFn: getBestSellingBooks,
+    queryFn: api.getBestSellingBooks,
   });
 
   if (categories.isLoading) return <LoadingSpinner />;

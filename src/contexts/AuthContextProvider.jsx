@@ -25,7 +25,7 @@ const AuthContextProvider = ({ children }) => {
 
       if (currentUser) {
         const userDetails = { email: currentUser.email };
-        fetch("https://encyclopaedia-server.vercel.app/jwt", {
+        fetch("http://localhost:5000/jwt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userDetails),

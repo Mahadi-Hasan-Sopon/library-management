@@ -44,7 +44,7 @@ const UpdateBook = () => {
       const toastId = toast.loading("Updating Book...");
       axios
         .patch(
-          `https://encyclopaedia-server.vercel.app/allBook/update/${book._id}`,
+          `http://localhost:5000/allBook/update/${book._id}`,
           updatedBook,
           {
             withCredentials: true,

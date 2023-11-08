@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBooksIdByEmail, getBorrowedBooksById } from "../../api/Api";
+import useApi from "../../api/Api";
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import axios from "axios";
@@ -9,17 +9,18 @@ import { Link } from "react-router-dom";
 
 const BorrowedBooks = () => {
   const { user } = useAuth();
+  const api = useApi();
 
   const booksId = useQuery({
     queryKey: ["booksId"],
-    queryFn: () => getBooksIdByEmail(user.email),
+    queryFn: () => api.getBooksIdByEmail(user.email),
   });
 
   const ids = booksId.data && booksId?.data.map((book) => book.bookId);
 
   const borrowedBooksList = useQuery({
     queryKey: ["borrowedBooks", ids],
-    queryFn: () => getBorrowedBooksById(ids),
+    queryFn: () => api.getBorrowedBooksById(ids),
     enabled: !!ids?.length,
   });
 
@@ -54,18 +55,15 @@ const BorrowedBooks = () => {
     try {
       axios
         .delete(
-          `https://encyclopaedia-server.vercel.app/allBook?email=${user?.email}&bookId=${id}`
+          `http://localhost:5000/allBook?email=${user?.email}&bookId=${id}`
         )
         .then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             axios
-              .patch(
-                `https://encyclopaedia-server.vercel.app/allBook/update/${id}`,
-                {
-                  quantity: parseInt(quantity) + 1,
-                }
-              )
+              .patch(`http://localhost:5000/allBook/update/${id}`, {
+                quantity: parseInt(quantity) + 1,
+              })
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

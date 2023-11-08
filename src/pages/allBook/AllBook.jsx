@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllBook } from "../../api/Api";
+import useApi from "../../api/Api";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import Book from "../../components/book/Book";
 import { useEffect, useState } from "react";
 
 const AllBook = () => {
+  const api = useApi();
+
   const {
     data: allBook,
     isLoading,
@@ -12,7 +14,7 @@ const AllBook = () => {
     error,
   } = useQuery({
     queryKey: ["allBook"],
-    queryFn: getAllBook,
+    queryFn: api.getAllBook,
   });
 
   const [displayBooks, setDisplayBooks] = useState(allBook);
@@ -20,7 +22,6 @@ const AllBook = () => {
   useEffect(() => {
     setDisplayBooks(allBook);
   }, [allBook]);
-
 
   const handleFilterChange = (e) => {
     const value = e.target.value;
