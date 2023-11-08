@@ -13,6 +13,7 @@ import Category from "../pages/category/Category";
 import UpdateBook from "../pages/updateBook/UpdateBook";
 import Error from "../components/error/Error";
 import Admin from "../pages/admin/Admin";
+import BookSample from "../components/bookSample/BookSample";
 
 const routes = createBrowserRouter([
   {
@@ -84,6 +85,12 @@ const routes = createBrowserRouter([
             <UpdateBook />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookDetails/${params.bookId}`),
+      },
+      {
+        path: "/book/sample/:bookId",
+        element: <BookSample />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookDetails/${params.bookId}`),
       },
