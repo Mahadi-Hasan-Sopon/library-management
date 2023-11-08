@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 
 const BorrowedBooks = () => {
   const { user } = useAuth();
@@ -146,6 +147,8 @@ const BorrowedBooks = () => {
             </div>
           ))}
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import Book from "../../components/book/Book";
 import { useEffect } from "react";
+import Footer from "../../components/footer/Footer";
 
 const Category = () => {
   const books = useLoaderData();
@@ -19,6 +20,8 @@ const Category = () => {
           <Book key={book._id} book={book} categoryValue={false} />
         ))}
       </div>
+
+      <Footer />
     </div>
   );
 };

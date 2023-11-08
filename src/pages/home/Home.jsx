@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Footer from "../../components/footer/Footer";
 
 function Home() {
   const api = useApi();
@@ -124,6 +125,8 @@ function Home() {
           ))}
         </div>
       </div>
+
+      <Footer/ >
     </div>
   );
 }

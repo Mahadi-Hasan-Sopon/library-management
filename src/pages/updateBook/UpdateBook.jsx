@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 
 const UpdateBook = () => {
   const book = useLoaderData();
@@ -214,6 +215,8 @@ const UpdateBook = () => {
           Go Back
         </button>
       </div>
+
+      <Footer />
     </div>
   );
 };

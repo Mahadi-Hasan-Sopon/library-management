@@ -1,6 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Footer from "../../components/footer/Footer";
 
 const AddBook = () => {
   const queryClient = new QueryClient();
@@ -233,6 +234,7 @@ const AddBook = () => {
           Add New Book
         </button>
       </form>
+      <Footer />
     </div>
   );
 };

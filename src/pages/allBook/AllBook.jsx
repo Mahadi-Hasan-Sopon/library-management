@@ -3,6 +3,7 @@ import useApi from "../../api/Api";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import Book from "../../components/book/Book";
 import { useEffect, useState } from "react";
+import Footer from "../../components/footer/Footer";
 
 const AllBook = () => {
   const api = useApi();
@@ -37,7 +38,11 @@ const AllBook = () => {
 
   return (
     <div className="my-10">
-      {isError && error?.message}
+      {isError && (
+        <div className="flex justify-center items-center w-full h-screen">
+          <p className="text-xl font-bold text-red-500">{error.message}</p>
+        </div>
+      )}
       <div className="filter flex justify-end mb-2">
         <div>
           <select
@@ -58,6 +63,8 @@ const AllBook = () => {
           <Book book={book} key={book._id} />
         ))}
       </div>
+
+      <Footer />
     </div>
   );
 };
