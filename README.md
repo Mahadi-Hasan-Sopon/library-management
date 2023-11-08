@@ -69,11 +69,16 @@ The Library Management Website is built using the following technologies and lib
 
 # Admin Auth:
 
+- admin route: website-link/admin (you have to type it manually)
 - email: admin@gmail.com
 - password: Admin@123
 
 /\*\*\*
 
-- FIXME:
+- TODO:
 - 1.  Use ReactToPDF or any relevant package to make the PDF version of the "Read" page of a book.
+
+- FIXME: 
+- 1. after signOut remove token from Cookie.
+
 - \*/
