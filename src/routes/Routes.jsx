@@ -12,6 +12,7 @@ import BookDetails from "../components/bookDetails/BookDetails";
 import Category from "../pages/category/Category";
 import UpdateBook from "../pages/updateBook/UpdateBook";
 import Error from "../components/error/Error";
+import Admin from "../pages/admin/Admin";
 
 const routes = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const routes = createBrowserRouter([
           ),
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
   },
 ]);
 

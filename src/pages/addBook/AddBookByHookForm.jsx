@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Footer from "../../components/footer/Footer";
+import useAuth from "../../hooks/useAuth";
 
 const AddBook = () => {
   const queryClient = new QueryClient();
@@ -11,6 +12,7 @@ const AddBook = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { user } = useAuth();
 
   const handleAddBookClick = (data) => {
     const {
@@ -40,9 +42,13 @@ const AddBook = () => {
     const toastId = toast.loading("Adding new Book....");
     try {
       axios
-        .post(`https://encyclopaedia-server.vercel.app/allBook`, formatedBook, {
-          withCredentials: true,
-        })
+        .post(
+          `https://encyclopaedia-server.vercel.app/allBook?email=${user?.email}`,
+          formatedBook,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {

@@ -15,7 +15,7 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="drawer block">
+    <div className="drawer block z-50">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
@@ -69,11 +69,11 @@ const MainLayout = () => {
           </div>
         </div>
         {/* Page content here */}
-        <div className="mx-auto w-full max-w-7xl px-10 overflow-x-hidden">
+        <div className="mx-auto w-full max-w-7xl px-10 overflow-x-hidden z-10">
           <Outlet />
         </div>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-50">
         <label
           htmlFor="my-drawer-3"
           aria-label="close sidebar"

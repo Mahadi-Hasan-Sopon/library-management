@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
+import useAuth from "../../hooks/useAuth";
 
 const UpdateBook = () => {
   const book = useLoaderData();
   const navigate = useNavigate();
   const queryClient = new QueryClient();
+  const { user } = useAuth();
 
   useEffect(() => {
     window.scroll({ top: 50 });
@@ -45,7 +47,7 @@ const UpdateBook = () => {
       const toastId = toast.loading("Updating Book...");
       axios
         .patch(
-          `https://encyclopaedia-server.vercel.app/allBook/update/${book._id}`,
+          `https://encyclopaedia-server.vercel.app/allBook/update/${book._id}?email=${user?.email}`,
           updatedBook,
           {
             withCredentials: true,
@@ -68,7 +70,7 @@ const UpdateBook = () => {
         })
         .catch((err) => {
           console.log(err);
-          toast.error(err?.message);
+          toast.error(err?.message, { id: toastId });
         });
     } catch (error) {
       console.log(error);
