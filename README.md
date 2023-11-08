@@ -67,6 +67,11 @@ The Library Management Website is built using the following technologies and lib
 
 ## [ Server Side Private repo:](https://github.com/Porgramming-Hero-web-course/b8a11-server-side-Mahadi-Hasan-Sopon)(https://github.com/Porgramming-Hero-web-course/b8a11-server-side-Mahadi-Hasan-Sopon)
 
+# Admin Auth:
+
+- email: admin@gmail.com
+- password: Admin@123
+
 /\*\*\*
 
 - FIXME:
