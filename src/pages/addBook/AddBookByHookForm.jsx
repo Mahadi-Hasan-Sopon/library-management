@@ -43,7 +43,7 @@ const AddBook = () => {
     try {
       axios
         .post(
-          `https://encyclopaedia-server.vercel.app/allBook?email=${user?.email}`,
+          `http://localhost:5000/allBook?email=${user?.email}`,
           formatedBook,
           {
             withCredentials: true,

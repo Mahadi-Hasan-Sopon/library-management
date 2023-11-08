@@ -9,11 +9,11 @@ const Navbar = () => {
   if (isLoading) return;
 
   const handleLogOut = () => {
+    const id = toast.loading("Logging Out User..");
     try {
-      const id = toast.loading("Logging Out User..");
       LogOutUser().then(toast.success("User Logged Out.", { id: id }));
     } catch (error) {
-      toast.error(error?.message);
+      toast.error(error?.message, { id: id });
     }
   };
 

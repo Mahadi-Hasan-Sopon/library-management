@@ -16,7 +16,7 @@ function Admin() {
   } = useForm();
 
   const handleAdminLogin = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const user = { email: data.email, password: data.password };
     const toastId = toast.loading("Logging in ...");
@@ -26,7 +26,7 @@ function Admin() {
           console.log(res.user);
           toast.success("Login successful", { id: toastId });
 
-          fetch("https://encyclopaedia-server.vercel.app/admin", {
+          fetch("http://localhost:5000/admin", {
             method: "POST",
             credentials: "include",
             headers: {
