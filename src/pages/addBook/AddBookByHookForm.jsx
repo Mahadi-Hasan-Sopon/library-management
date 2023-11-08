@@ -40,7 +40,7 @@ const AddBook = () => {
     const toastId = toast.loading("Adding new Book....");
     try {
       axios
-        .post(`http://localhost:5000/allBook`, formatedBook, {
+        .post(`https://encyclopaedia-server.vercel.app/allBook`, formatedBook, {
           withCredentials: true,
         })
         .then((res) => {
