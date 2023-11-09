@@ -70,7 +70,7 @@ const Navbar = () => {
                 SignOut
               </button>
             </div>
-            <div className="avatar flex flex-col items-center">
+            <div className="flex flex-col items-center">
               {user?.photoURL ? (
                 <img
                   className="w-10 h-10 rounded-full border"
@@ -81,7 +81,7 @@ const Navbar = () => {
                 <FcReading className="text-4xl lg:text-3xl" />
               )}
 
-              <p className="text-lg font-bold">
+              <p className="text-base font-bold">
                 {user?.displayName ? user.displayName : "User"}
               </p>
             </div>
