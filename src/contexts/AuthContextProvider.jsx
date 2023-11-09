@@ -17,6 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [userRole, setUserRole] = useState("user");
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -87,7 +88,11 @@ const AuthContextProvider = ({ children }) => {
     SignInWithGoogle,
     LogOutUser,
     updateUserInfo,
+    userRole,
+    setUserRole,
   };
+
+  console.log("useRole ", userRole);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
