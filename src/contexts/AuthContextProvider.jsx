@@ -25,7 +25,29 @@ const AuthContextProvider = ({ children }) => {
       setIsLoading(false);
 
       if (currentUser) {
+        // console.log(currentUser.role, "role in context");
+        const uid = { uid: currentUser.uid };
+        fetch(`http://localhost:5000/isAdmin`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(uid),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data?.role) {
+              setUserRole(data.role);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
         const userDetails = { email: currentUser.email };
+
         fetch("http://localhost:5000/jwt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -48,8 +70,11 @@ const AuthContextProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserInfo = (displayName) => {
-    return updateProfile(auth.currentUser, { displayName });
+  const updateUserInfo = (displayName, role) => {
+    return updateProfile(auth.currentUser, {
+      displayName: displayName,
+      role: role ? role : "user",
+    });
   };
 
   const loginUserWithEmail = (email, password) => {
@@ -91,8 +116,6 @@ const AuthContextProvider = ({ children }) => {
     userRole,
     setUserRole,
   };
-
-  console.log("useRole ", userRole);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

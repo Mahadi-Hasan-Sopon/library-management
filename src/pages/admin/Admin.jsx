@@ -7,7 +7,8 @@ import { AuthContext } from "../../contexts/AuthContextProvider";
 
 function Admin() {
   const { toggleTheme, checked } = useContext(ThemeContext);
-  const { loginUserWithEmail, setUserRole } = useContext(AuthContext);
+  const { loginUserWithEmail, updateUserInfo, setUserRole } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -38,9 +39,13 @@ function Admin() {
       loginUserWithEmail(data.email, data.password)
         .then((res) => {
           console.log(res.user);
-          setUserRole("admin");
-          toast.success("Login successful", { id: toastId });
-          navigate(location?.state ? location.state : "/");
+          if (res.user) {
+            setUserRole("admin");
+            toast.success("Login successful", { id: toastId });
+            updateUserInfo("Admin", "admin").then(() =>
+              navigate(location?.state ? location.state : "/")
+            );
+          }
         })
         .catch((err) => toast.error(err?.message, { id: toastId }));
     } catch (error) {

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { FcReading } from "react-icons/fc";
 
 const Navbar = () => {
-  const { user, LogOutUser, isLoading } = useAuth();
+  const { user, LogOutUser, isLoading, userRole } = useAuth();
 
   if (isLoading) return;
 
@@ -16,6 +16,8 @@ const Navbar = () => {
       toast.error(error?.message, { id: id });
     }
   };
+
+  console.log(userRole, "in navbar ");
 
   return (
     <>

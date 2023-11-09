@@ -78,9 +78,13 @@ const BookDetails = () => {
           console.log(res.data);
           if (res.data.acknowledged && res.data.insertedId) {
             axios
-              .patch(`http://localhost:5000/allBook/update/${_id}`, {
-                quantity: parseInt(quantity) - 1,
-              })
+              .patch(
+                `http://localhost:5000/allBook/update/${_id}`,
+                {
+                  quantity: parseInt(quantity) - 1,
+                },
+                { withCredentials: true }
+              )
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
