@@ -27,7 +27,7 @@ const AuthContextProvider = ({ children }) => {
       if (currentUser) {
         // console.log(currentUser.role, "role in context");
         const uid = { uid: currentUser.uid };
-        fetch(`http://localhost:5000/isAdmin`, {
+        fetch(`https://encyclopaedia-server.vercel.app/isAdmin`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const AuthContextProvider = ({ children }) => {
 
         const userDetails = { email: currentUser.email };
 
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://encyclopaedia-server.vercel.app/jwt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userDetails),
@@ -90,7 +90,7 @@ const AuthContextProvider = ({ children }) => {
   const LogOutUser = async () => {
     setIsLoading(true);
     return signOut(auth).then(() => {
-      fetch("http://localhost:5000/logOut", {
+      fetch("https://encyclopaedia-server.vercel.app/logOut", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

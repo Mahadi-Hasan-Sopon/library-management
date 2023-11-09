@@ -22,14 +22,17 @@ function Admin() {
     const user = { email: data.email, password: data.password };
     const toastId = toast.loading("Logging in ...");
     try {
-      const response = await fetch("http://localhost:5000/admin", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const response = await fetch(
+        "https://encyclopaedia-server.vercel.app/admin",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
       const isValidUser = await response.json();
       console.log(isValidUser);
       if (isValidUser?.role === "user") {

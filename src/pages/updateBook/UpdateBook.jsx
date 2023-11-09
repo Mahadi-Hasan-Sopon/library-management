@@ -47,7 +47,7 @@ const UpdateBook = () => {
       const toastId = toast.loading("Updating Book...");
       axios
         .put(
-          `http://localhost:5000/allBook/${book._id}?email=${user?.email}`,
+          `https://encyclopaedia-server.vercel.app/allBook/${book._id}?email=${user?.email}`,
           updatedBook,
           {
             withCredentials: true,
