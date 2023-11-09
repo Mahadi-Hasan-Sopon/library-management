@@ -69,7 +69,7 @@ The Library Management Website is built using the following technologies and lib
 
 # Admin Auth:
 
-- admin route: website-link/admin (you have to type it manually)
+- admin route: https://encyclopaedia-97061.web.app/admin (you have to type it manually)
 - email: admin@gmail.com
 - password: Admin@123
 
