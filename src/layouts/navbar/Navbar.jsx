@@ -17,8 +17,6 @@ const Navbar = () => {
     }
   };
 
-  console.log(userRole, "in navbar ");
-
   return (
     <>
       <li>
@@ -31,16 +29,18 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/addBook"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Add Book
-        </NavLink>
-      </li>
+      {userRole === "admin" && (
+        <li>
+          <NavLink
+            to="/addBook"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Add Book
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink
           to="/allBook"

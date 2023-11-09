@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import Rating from "react-rating";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Book = ({ book, categoryValue }) => {
+  const { userRole } = useAuth();
   const { _id, title, image, author, category, rating } = book || {};
   return (
     <div className="flex flex-col bg-base-100 shadow-xl rounded-lg">
@@ -37,12 +39,16 @@ const Book = ({ book, categoryValue }) => {
         </div>
         <div className="flex-grow"></div>
         <div className="flex justify-between gap-4">
-          <Link
-            to={`/book/update/${_id}`}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
-          >
-            Update
-          </Link>
+          {userRole === "admin" ? (
+            <Link
+              to={`/book/update/${_id}`}
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 disabled:bg-gray-500 disabled:text-gray-400"
+            >
+              Update
+            </Link>
+          ) : (
+            <button className="btn btn-disabled">Update</button>
+          )}
           <Link
             to={`/bookDetails/${_id}`}
             className="btn btn-outline border-gray-700 border-2 dark:border-gray-500 hover:border-gray-700 hover:text-slate-100 dark:hover:text-gray-700 dark:hover:font-bold normal-case"
