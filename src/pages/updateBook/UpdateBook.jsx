@@ -44,8 +44,8 @@ const UpdateBook = () => {
     try {
       const toastId = toast.loading("Updating Book...");
       axios
-        .put(
-          `https://encyclopaedia-server.vercel.app/allBook/${book._id}`,
+        .post(
+          `https://encyclopaedia-server.vercel.app/allBook/admin/${book._id}`,
           updatedBook,
           {
             withCredentials: true,

@@ -34,7 +34,7 @@ function Admin() {
         }
       );
       const isValidUser = await response.json();
-      console.log(isValidUser);
+      // console.log(isValidUser);
       if (isValidUser?.role === "user") {
         throw new Error("Invalid Login Credentials.");
       }
