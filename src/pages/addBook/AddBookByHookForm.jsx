@@ -58,7 +58,7 @@ const AddBook = () => {
         })
         .catch((err) => {
           console.log(err);
-          toast.error(err?.message, { id: toastId });
+          toast.error(err.response?.data.message, { id: toastId });
         });
     } catch (error) {
       console.log(error);
