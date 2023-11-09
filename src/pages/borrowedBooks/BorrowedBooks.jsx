@@ -56,18 +56,15 @@ const BorrowedBooks = () => {
     try {
       axios
         .delete(
-          `https://encyclopaedia-server.vercel.app/allBook?email=${user?.email}&bookId=${id}`
+          `http://localhost:5000/allBook?email=${user?.email}&bookId=${id}`
         )
         .then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             axios
-              .patch(
-                `https://encyclopaedia-server.vercel.app/allBook/update/${id}`,
-                {
-                  quantity: parseInt(quantity) + 1,
-                }
-              )
+              .patch(`http://localhost:5000/allBook/update/${id}`, {
+                quantity: parseInt(quantity) + 1,
+              })
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

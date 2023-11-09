@@ -15,31 +15,30 @@ function Admin() {
     formState: { errors },
   } = useForm();
 
-  const handleAdminLogin = (data) => {
+  const handleAdminLogin = async (data) => {
     // console.log(data);
 
     const user = { email: data.email, password: data.password };
     const toastId = toast.loading("Logging in ...");
     try {
+      const response = await fetch("http://localhost:5000/admin", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const isValidUser = await response.json();
+      console.log(isValidUser);
+      if (isValidUser?.role === "user") {
+        throw new Error("Invalid Login Credentials.");
+      }
+
       loginUserWithEmail(data.email, data.password)
         .then((res) => {
           console.log(res.user);
           toast.success("Login successful", { id: toastId });
-
-          fetch("https://encyclopaedia-server.vercel.app/admin", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-            })
-            .catch((err) => console.log(err));
-
           navigate(location?.state ? location.state : "/");
         })
         .catch((err) => toast.error(err?.message, { id: toastId }));

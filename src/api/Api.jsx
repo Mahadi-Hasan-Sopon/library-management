@@ -4,8 +4,8 @@ import { AuthContext } from "../contexts/AuthContextProvider";
 
 //https:// encyclopaedia-server.vercel.app
 
-const apiSecure = axios.create({
-  baseURL: "https://encyclopaedia-server.vercel.app",
+export const apiSecure = axios.create({
+  baseURL: "http://localhost:5000",
   headers: {
     "Content-Type": "application/json",
   },
@@ -69,9 +69,7 @@ const useApi = () => {
 
   const getCategories = async () => {
     try {
-      const categories = await axios.get(
-        "https://encyclopaedia-server.vercel.app/categories"
-      );
+      const categories = await axios.get("http://localhost:5000/categories");
       return categories.data;
     } catch (error) {
       console.log(error);
@@ -80,9 +78,7 @@ const useApi = () => {
 
   const getBestSellingBooks = async () => {
     try {
-      const result = await axios.get(
-        "https://encyclopaedia-server.vercel.app/bestSellers"
-      );
+      const result = await axios.get("http://localhost:5000/bestSellers");
       return result.data;
     } catch (error) {
       console.log(error);
@@ -156,7 +152,7 @@ export default useApi;
 
 // const getCategories = async () => {
 //   try {
-//     const categories = await axios.get("https://encyclopaedia-server.vercel.app/categories");
+//     const categories = await axios.get("http://localhost:5000/categories");
 //     return categories.data;
 //   } catch (error) {
 //     console.log(error);
@@ -165,7 +161,7 @@ export default useApi;
 
 // const getBestSellingBooks = async () => {
 //   try {
-//     const result = await axios.get("https://encyclopaedia-server.vercel.app/bestSellers");
+//     const result = await axios.get("http://localhost:5000/bestSellers");
 //     return result.data;
 //   } catch (error) {
 //     console.log(error);
