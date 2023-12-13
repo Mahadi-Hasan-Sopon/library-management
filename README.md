@@ -59,19 +59,13 @@ The Library Management Website is built using the following technologies and lib
 - **DaisyUI**: A collection of components and plugins for enhancing the Tailwind CSS framework.
 - **Tanstack Query**: A library for fetching, caching, and synchronizing data in your application.
 
-## [Live Website Link:](https://encyclopaedia-97061.web.app)(https://encyclopaedia-97061.web.app)
+## [Live Website Link:](https://encyclopaedia-97061.web.app)
 
-## [Live Website (Alternative):](https://encyclopaedia.surge.sh)(https://encyclopaedia.surge.sh)
-
-## [ Client Side Private repo Link:](https://github.com/Porgramming-Hero-web-course/b8a11-client-side-Mahadi-Hasan-Sopon)(https://github.com/Porgramming-Hero-web-course/b8a11-client-side-Mahadi-Hasan-Sopon)
-
-## [ Server Side Private repo:](https://github.com/Porgramming-Hero-web-course/b8a11-server-side-Mahadi-Hasan-Sopon)(https://github.com/Porgramming-Hero-web-course/b8a11-server-side-Mahadi-Hasan-Sopon)
+## [Live Website (Alternative):](https://encyclopaedia.surge.sh)
+## [ Server Side Private repo:](https://github.com/Mahadi-Hasan-Sopon/library-management-server)
 
 # Admin Auth:
 
 - admin route: https://encyclopaedia-97061.web.app/admin (you have to type it manually)
 - email: admin@gmail.com
 - password: Admin@123
-
-- TODO:
-- 1.  Use ReactToPDF or any relevant package to make the PDF version of the "Read" page of a book.
